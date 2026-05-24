@@ -1,3 +1,7 @@
+[🇹🇷 Türkçe](README.md) | [🇬🇧 English](README_EN.md)
+
+---
+
 # Akıllı Baret Canlı Takip Sistemi
 
 Akıllı Baret, inşaat ve iş güvenliği bağlamında baretin anlık kullanım durumunu kamera kullanmadan takip eden bir prototiptir. Sistem, MPU6050 ivmeölçer ve jiroskop verilerini ESP32 üzerinden Wi-Fi ile FastAPI sunucusuna gönderir; V3 Final Random Forest modeli tahmin üretir ve Streamlit canlı paneli yöneticinin durumu izlemesini sağlar.
