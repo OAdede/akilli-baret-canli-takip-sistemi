@@ -1,0 +1,37 @@
+# Python
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Environment and secrets
+.env
+.env.*
+.streamlit/secrets.toml
+arduino/**/secrets.h
+
+# Editors and OS files
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Local archives and generated outputs
+archive_local/
+data/processed/
+data/demo_output/
+models/helmet_real_rf_model.joblib
+models/helmet_rf_model_v2.joblib
+
+# Runtime logs
+*.log
+*.tmp
+tmp/
+temp/

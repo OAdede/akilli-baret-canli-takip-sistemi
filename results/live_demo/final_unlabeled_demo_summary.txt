@@ -1,0 +1,22 @@
+﻿AKILLI BARET - ETIKETSIZ FINAL DEMO OZETI
+
+Kullanilan model:
+models/helmet_rf_model_v3_final.joblib
+
+Girdi dosyasi:
+data/demo_input/demo_unlabeled_surface_01.csv
+
+Demo ozelligi:
+Bu CSV dosyasinda label sutunu bulunmamaktadir.
+Model, yalnizca MPU tabanli sensor verilerine bakarak tahmin yapmistir.
+
+Sonuc:
+- Toplam tahmin penceresi: 28
+- AI ana karari: On Surface
+- Ana karar pencere orani: %100.00
+- Son durum tahmini: On Surface
+- Genel ortalama guven: %100.00
+
+Bilimsel not:
+Bu demo, etiketsiz yeni veride otomatik tahmin akisini gostermektedir.
+Genel bagimsiz performans sonucu olarak V1 asamasinda elde edilen %91.31 kullanilmalidir.

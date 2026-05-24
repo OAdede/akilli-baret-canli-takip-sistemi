@@ -1,0 +1,40 @@
+AKILLI BARET - BAGIMSIZ TEST DEGERLENDIRMESI
+============================================
+
+Toplam test pencere sayisi: 1192
+Bagimsiz test accuracy: 0.7055
+Bagimsiz test accuracy yuzde: %70.55
+
+Classification Report:
+              precision    recall  f1-score   support
+
+     On Head       0.88      0.98      0.93       298
+     On Belt       0.00      0.00      0.00       298
+     In Hand       0.45      0.85      0.59       298
+  On Surface       0.98      1.00      0.99       298
+
+    accuracy                           0.71      1192
+   macro avg       0.58      0.71      0.63      1192
+weighted avg       0.58      0.71      0.63      1192
+
+Confusion Matrix:
+            On Head  On Belt  In Hand  On Surface
+On Head         291        0        7           0
+On Belt           0        0      298           0
+In Hand          40        0      252           6
+On Surface        0        0        0         298
+
+Sinif bazli dogruluk:
+            sum  count  accuracy
+real_label                      
+In Hand     252    298  0.845638
+On Belt       0    298  0.000000
+On Head     291    298  0.976510
+On Surface  298    298  1.000000
+
+Ortalama guven degerleri:
+real_label
+In Hand       0.790716
+On Belt       0.891935
+On Head       0.871376
+On Surface    0.964362

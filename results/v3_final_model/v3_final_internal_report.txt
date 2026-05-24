@@ -1,0 +1,31 @@
+AKILLI BARET - V3 FINAL MODEL IC KONTROL RAPORU
+================================================
+
+Toplam ham egitim satiri: 81587
+Toplam pencere sayisi: 4056
+Feature sayisi: 48
+
+NOT: Asagidaki sonuc final bagimsiz test sonucu degildir.
+Bu sonuc yalnizca V3 Final Model ic kontrol amaciyla uretilmistir.
+
+Ic kontrol accuracy: 0.9589
+Ic kontrol accuracy yuzde: %95.89
+
+Classification Report:
+              precision    recall  f1-score   support
+
+     On Head       0.93      0.95      0.94       305
+     On Belt       0.97      0.97      0.97       304
+     In Hand       0.94      0.92      0.93       304
+  On Surface       1.00      0.99      1.00       304
+
+    accuracy                           0.96      1217
+   macro avg       0.96      0.96      0.96      1217
+weighted avg       0.96      0.96      0.96      1217
+
+Confusion Matrix:
+            On Head  On Belt  In Hand  On Surface
+On Head         290        0       15           0
+On Belt           4      296        4           0
+In Hand          17        8      279           0
+On Surface        2        0        0         302

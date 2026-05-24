@@ -1,0 +1,18 @@
+AKILLI BARET - V3 FINAL DEMO TAHMIN OZETI
+=========================================
+
+Model: models/helmet_rf_model_v3_final.joblib
+Girdi dosyasi: data\demo_input\demo_unlabeled_surface_01.csv
+Toplam tahmin penceresi: 28
+
+AI ana karari: On Surface
+Ana karar pencere orani: %100.00
+Son durum tahmini: On Surface
+Son durum ortalama guveni: %100.00
+Genel ortalama guven: %100.00
+
+Tahmin dagilimi:
+On Head      :    0 pencere  (%0.00)
+On Belt      :    0 pencere  (%0.00)
+In Hand      :    0 pencere  (%0.00)
+On Surface   :   28 pencere  (%100.00)

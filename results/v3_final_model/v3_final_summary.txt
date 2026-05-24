@@ -1,0 +1,35 @@
+﻿AKILLI BARET - V3 FINAL MODEL OZETI
+
+Model dosyasi:
+models/helmet_rf_model_v3_final.joblib
+
+Egitimde kullanilan veri:
+- data/raw/on_head_01.csv
+- data/raw/on_belt_01.csv
+- data/raw/in_hand_01.csv
+- data/raw/on_surface_01.csv
+- data/training_extra/on_head_02.csv
+- data/training_extra/on_belt_02.csv
+- data/training_extra/in_hand_02.csv
+- data/training_extra/on_surface_02.csv
+- data/test2/test2_on_head_01.csv
+- data/test2/test2_on_belt_01.csv
+- data/test2/test2_in_hand_01.csv
+- data/test2/test2_on_surface_01.csv
+
+Toplam ham veri: 81587 satir
+Toplam pencere: 4056
+Her sinif pencere sayisi: 1014
+Feature sayisi: 48
+V3 ic kontrol dogrulugu: %95.89
+
+Bilimsel not:
+V3 model mevcut tum gercek verilerle egitilmistir.
+Bu nedenle %95.89 sonucu bagimsiz nihai test sonucu degil,
+ic kontrol sonucudur.
+
+Kayda alinmis bagimsiz sonuclar:
+- V1 bagimsiz test sonucu: %91.31
+- V2 yonelim degisimi bagimsiz test sonucu: %70.55
+- V2 sonucunda sol kemerde tasinan baretin In Hand ile karistigi gozlenmistir.
+- Bu varyasyon V3 final modele dahil edilmistir.
