@@ -45,10 +45,13 @@ flowchart LR
 
 - ESP32 Dev Module
 - MPU6050
-- microSD module used during development for data collection
-- USB or powerbank supply for live validation
+- 3.7 V 500 mAh Li-Po battery
+- TP4056 charging/protection module
+- XL6009 adjustable DC-DC boost converter
+- On/off switch
+- microSD module used during development for CSV recordings
 
-The microSD module is not required for live use; it was used during the training-data collection stage.
+The microSD module was used for CSV recordings during the data collection/model development stage. It is not required in the final live monitoring flow because sensor data is sent to the server over Wi-Fi.
 
 ## ESP32 and MPU6050 Wiring
 
@@ -61,15 +64,31 @@ The microSD module is not required for live use; it was used during the training
 
 ## Power System
 
-The validated operating setup uses USB or a powerbank.
+In the final portable prototype, a 3.7 V 500 mAh Li-Po battery, TP4056 charging/protection module, on/off switch, and XL6009 adjustable boost converter have been physically integrated. The XL6009 output was adjusted to 5.00 V with a multimeter, and the boost output is connected to the ESP32 `VIN / 5V` input.
 
-Proposed compact power architecture:
+Battery-powered live system validation should be documented separately. Earlier live validation flows also used USB/powerbank supply.
 
 ```text
-3.7 V Li-Po battery -> TP4056 charging/protection module -> 5 V boost converter -> ESP32
+3.7 V 500 mAh Li-Po Battery
+        ↓
+TP4056 Charging / Protection Module
+        ↓
+On/Off Switch
+        ↓
+XL6009 Boost Converter — adjusted to a 5.00 V output
+        ↓
+ESP32 VIN / 5V
+        ↓
+Live Wi-Fi transmission of MPU6050 data to the AI server
 ```
 
-This Li-Po + TP4056 + 5 V boost setup is not presented as a physically validated result in this repository. It should be treated as a future development step.
+Safety notes:
+
+- The XL6009 output must be adjusted to 5.00 V with a multimeter before connecting it to the ESP32.
+- The XL6009 output is not connected to the `ESP32 3V3` pin; it is connected only to the `VIN / 5V` input.
+- When the ESP32 is powered from the external 5 V line, it should not be powered over USB at the same time.
+- It is recommended to keep the prototype switched off while charging through the TP4056.
+- This prototype does not replace a certified occupational safety device or certified personal protective equipment.
 
 ## Data Collection and Classes
 
@@ -192,7 +211,19 @@ This dashboard is not the main product; it is kept as an offline analysis and de
 
 ## Physical Prototype
 
-### Helmet-Mounted Live Tracking Hardware
+### Final Portable Prototype
+
+In the final prototype integrated onto the helmet, the ESP32, MPU6050, and portable power units are used together. Sensor data is sent by the ESP32 to the live AI server over Wi-Fi.
+
+![Final portable smart helmet prototype](docs/images/prototype-final-portable-system.jpeg)
+
+### Internal Power Module Placement
+
+The XL6009 boost converter placed inside the helmet raises the voltage from the Li-Po-based power line to the 5.00 V level adjusted for the ESP32.
+
+![XL6009 power converter placement inside the helmet](docs/images/prototype-final-internal-power.jpeg)
+
+### Earlier USB/Powerbank-Based Live Prototype
 
 In the camera-free live monitoring prototype, the ESP32 and MPU6050 modules are experimentally fixed onto the helmet. The MPU6050 collects motion/orientation data, while the ESP32 sends this data to the live AI server over Wi-Fi. The photo shows a USB power connection; it should not be interpreted as an implemented Li-Po + TP4056 + 5 V boost architecture.
 
@@ -257,7 +288,9 @@ V3 internal validation confusion matrix:
 
 ## Future Improvements
 
-- Physically test Li-Po + TP4056 + 5 V boost integration
+- More compact custom PCB design
+- Smaller and more efficient power module
+- Battery level monitoring
 - Field operation with a Raspberry Pi or local network hub
 - Expand multi-helmet support
 - Add fall or impact event detection

@@ -45,10 +45,13 @@ flowchart LR
 
 - ESP32 Dev Module
 - MPU6050
-- Geliştirme sırasında veri toplamak için microSD modülü
-- Canlı doğrulama için USB veya powerbank besleme
+- 3.7 V 500 mAh Li-Po pil
+- TP4056 şarj/koruma modülü
+- XL6009 ayarlanabilir DC-DC boost dönüştürücü
+- Açma-kapama anahtarı
+- Geliştirme sırasında CSV kayıtları almak için microSD modülü
 
-microSD modülü canlı kullanım için zorunlu değildir; eğitim verisi toplama aşamasında kullanılmıştır.
+microSD modülü, veri toplama/model geliştirme aşamasında CSV kayıtları için kullanılmıştır. Final canlı takip akışında sensör verileri Wi-Fi üzerinden sunucuya iletildiği için microSD modülü zorunlu değildir.
 
 ## ESP32 ve MPU6050 Kablolama
 
@@ -61,15 +64,31 @@ microSD modülü canlı kullanım için zorunlu değildir; eğitim verisi toplam
 
 ## Güç Sistemi
 
-Doğrulanan çalışma USB veya powerbank ile yapılmıştır.
+Final taşınabilir prototipte 3.7 V 500 mAh Li-Po pil, TP4056 şarj/koruma modülü, açma-kapama anahtarı ve XL6009 ayarlanabilir boost dönüştürücü fiziksel olarak entegre edilmiştir. XL6009 çıkışı multimetre ile 5.00 V seviyesine ayarlanmış ve boost çıkışı ESP32'nin `VIN / 5V` girişine verilmiştir.
 
-Kompakt kullanım için önerilen güç mimarisi:
+Pil tabanlı canlı sistem doğrulamasının ayrıca kayıt altına alınması önerilir. Önceki canlı doğrulama akışlarında USB/powerbank besleme de kullanılmıştır.
 
 ```text
-3.7 V Li-Po pil -> TP4056 şarj/koruma kartı -> 5 V boost dönüştürücü -> ESP32
+3.7 V 500 mAh Li-Po Pil
+        ↓
+TP4056 Şarj / Koruma Modülü
+        ↓
+Açma / Kapama Anahtarı
+        ↓
+XL6009 Boost Dönüştürücü — 5.00 V çıkışa ayarlı
+        ↓
+ESP32 VIN / 5V
+        ↓
+MPU6050 verilerinin Wi-Fi üzerinden canlı sunucuya iletilmesi
 ```
 
-Bu Li-Po + TP4056 + 5 V boost kurulumu bu repo içinde fiziksel olarak doğrulanmış bir sonuç gibi sunulmamaktadır. Gelecek geliştirme adımı olarak ele alınmalıdır.
+Güvenlik notları:
+
+- XL6009 çıkışı ESP32'ye bağlanmadan önce multimetre ile 5.00 V'a ayarlanmalıdır.
+- XL6009 çıkışı `ESP32 3V3` pinine bağlanmaz; yalnızca `VIN / 5V` girişine verilir.
+- ESP32 haricî 5 V besleme ile çalışırken aynı anda USB üzerinden beslenmemelidir.
+- TP4056 üzerinden şarj yapılırken prototipin kapalı tutulması önerilir.
+- Bu prototip, sertifikalı bir iş güvenliği cihazı veya sertifikalı KKD yerine geçmez.
 
 ## Veri Toplama ve Sınıflar
 
@@ -192,7 +211,19 @@ Bu panel ana ürün değildir; canlı sistemin yanında offline analiz ve demo a
 
 ## Fiziksel Prototip
 
-### Canlı Takip Donanımının Kask Üzerindeki Yerleşimi
+### Final Taşınabilir Prototip
+
+Kask üzerine entegre edilen final prototipte ESP32, MPU6050 ve taşınabilir güç birimleri birlikte kullanılmaktadır. Sensör verileri ESP32 tarafından Wi-Fi üzerinden canlı AI sunucusuna iletilmektedir.
+
+![Final taşınabilir akıllı baret prototipi](docs/images/prototype-final-portable-system.jpeg)
+
+### İç Güç Modülü Yerleşimi
+
+Kaskın iç kısmına yerleştirilen XL6009 boost dönüştürücü, Li-Po tabanlı güç hattından alınan gerilimi ESP32 için ayarlanmış 5.00 V seviyesine yükseltmektedir.
+
+![Kask içindeki XL6009 güç dönüştürücü yerleşimi](docs/images/prototype-final-internal-power.jpeg)
+
+### Önceki USB/Powerbank Tabanlı Canlı Prototip
 
 Kamera kullanılmadan yapılan canlı takip prototipinde, ESP32 ve MPU6050 modülleri baret üzerine deneysel olarak sabitlenmiştir. MPU6050 hareket/yönelim verilerini toplar; ESP32 ise bu verileri Wi-Fi üzerinden canlı AI sunucusuna iletir. Görselde USB güç bağlantısı bulunmaktadır; önerilen Li-Po + TP4056 + 5 V boost mimarisinin uygulanmış hali olarak yorumlanmamalıdır.
 
@@ -256,7 +287,9 @@ V3 iç kontrol confusion matrix:
 
 ## Gelecek Geliştirmeler
 
-- Li-Po + TP4056 + 5 V boost entegrasyonunu fiziksel olarak test etmek
+- Daha kompakt özel PCB tasarımı
+- Daha küçük ve verimli güç modülü
+- Pil seviye izleme
 - Raspberry Pi veya yerel ağ merkezi ile sahada bağımsız çalışma
 - Çoklu baret desteğini genişletmek
 - Düşme veya çarpma olayı tespiti eklemek

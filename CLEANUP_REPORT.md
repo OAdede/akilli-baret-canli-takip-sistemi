@@ -96,3 +96,11 @@ Ham eğitim/test CSV dosyaları ve `models/helmet_rf_model_v3_final.joblib` fina
 4. Arduino IDE veya Arduino CLI kurulu bir ortamda ESP32 kodunu derle ve karta yükle.
 5. GitHub'a yüklemeden önce son diff'i elle incele.
 6. Gerçek çalışan klasör olan `akilli-baret-gercek` klasörünü yedek olarak sakla.
+
+## Final Portable Hardware Documentation Update
+
+- Added documentation for the final portable Li-Po powered prototype.
+- Added final portable prototype and internal power module photographs.
+- Updated Turkish and English README hardware/power-system sections.
+- Updated `docs/hardware-setup.md` with the final power wiring and safety notes.
+- No source code, trained model, dataset, or dependency file was modified during this documentation update.
